@@ -2,11 +2,19 @@ const express =require('express')
 const app = express()
 const jwt = require('jsonwebtoken')
 const {createTodo, updateTodo } = require('./types')
+const { todo } = require('./db')
 
 
 app.use(express.json())
 
-app.get("/todos", (req, res)=> {
+app.get("/todos", async (req, res)=> {          
+    const todo = await todo.find();
+    res.status(200).json({
+        todos: todo
+    })
+})
+
+app.post("/todos", async (req, res)=> {
     const createPayload = req.body;
     const parsePayload = createTodo.safeParse(createPayload);
     if(!parsePayload.success){
@@ -16,13 +24,18 @@ app.get("/todos", (req, res)=> {
 
         return;
     }
+    await todo.create({
+        title: createPayload.title,
+        description: createPayload.description,
+        completed: false
+    })
+
+    res.json({
+        msg: "Todo Created!"
+    })
 })
 
-app.post("/todos", (req, res)=> {
-    
-})
-
-app.put("/completed", (req, res)=> {
+app.put("/completed", async (req, res)=> {
     const updatePayload = req.body;
     const parsePayload = updateTodo.safeParse(updatePayload);
     if(!parsePayload.success){
@@ -32,4 +45,12 @@ app.put("/completed", (req, res)=> {
 
         return;
     }
+    await todo.update({
+        _id: req.body.id
+    },{
+        completed: true
+    })
+    res.json({
+        msg: "Todo Updated!"
+    })
 })
