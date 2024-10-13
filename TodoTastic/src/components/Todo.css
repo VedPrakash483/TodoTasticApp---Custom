@@ -1,0 +1,43 @@
+/* Todo.css */
+
+.todo-item {
+    background-color: #ffffff; /* White background for todo items */
+    padding: 15px;
+    margin: 10px auto; /* Center the todo items with auto margins */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 300px; /* Set a fixed width for the todo item */
+    text-align: left; /* Align text to the left */
+}
+
+.todo-item.completed {
+    background-color: #e0ffe0; /* Light green background for completed todos */
+    text-decoration: line-through; /* Strike-through text for completed todos */
+    color: #888; /* Gray text color for completed todos */
+}
+
+.todo-item h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 20px; /* Font size for title */
+}
+
+.todo-item p {
+    margin: 5px 0; /* Space between title and description */
+    color: #555; /* Darker gray for description text */
+}
+
+.todo-item button {
+    margin-top: 10px; /* Space above the button */
+    padding: 8px 12px; /* Padding for the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    width: 100%; /* Make button take full width of the todo item */
+}
+
+.todo-item button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
