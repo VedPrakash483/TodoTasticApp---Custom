@@ -52,9 +52,17 @@ app.put("/completed", async (req, res)=> {
     },{
         completed: true
     })
+    setTimeout( async () => {
+        await todo.deleteOne({
+            _id: req.body.id
+        })
+    }, 1000)
     res.json({
         msg: "Todo Updated!"
     })
+})
+app.delete("/todos/:id", async (req, res)=> {
+
 })
 
 app.listen(PORT, () => {
